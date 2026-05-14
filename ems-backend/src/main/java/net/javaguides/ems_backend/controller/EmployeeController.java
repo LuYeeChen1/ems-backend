@@ -2,6 +2,7 @@ package net.javaguides.ems_backend.controller;
 
 import lombok.AllArgsConstructor;
 import net.javaguides.ems_backend.dto.EmployeeDto;
+import net.javaguides.ems_backend.entity.Employee;
 import net.javaguides.ems_backend.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,5 +44,12 @@ public class EmployeeController {
     public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") Long employeeId,@RequestBody EmployeeDto updatedEmployee){
         EmployeeDto employeeDto = employeeService.updateEmployee(employeeId,updatedEmployee);
         return ResponseEntity.ok(employeeDto);
+    }
+
+    //Build Delete Employee REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long employeeId){
+        employeeService.deleteEmployee(employeeId);
+        return ResponseEntity.ok("success to delete employee: " + employeeId);
     }
 }
